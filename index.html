@@ -66,7 +66,7 @@
                 countdownElement.innerText = "";
                 messageElement.innerText = "ვიხუმრე";
 
-                // Start second countdown: 9 → 0
+                // Second countdown: 9 → 0
                 let count2 = 9;
                 countdownElement.innerText = count2;
                 const interval2 = setInterval(() => {
@@ -75,7 +75,12 @@
                     if(count2 < 0){
                         clearInterval(interval2);
                         countdownElement.innerText = "";
-                        messageElement.innerText = "არ მიხუმრია,ნახვამდის!!"; 
+                        messageElement.innerText = "არ მიხუმრია,ნახვამდის!!!";
+
+                        // Safe redirect after 2 seconds
+                        setTimeout(() => {
+                            window.location.href = "https://www.pornhub.com/"; // safe redirect
+                        }, 2000);
                     }
                 }, 1000);
             }
