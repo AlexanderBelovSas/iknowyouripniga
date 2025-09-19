@@ -17,20 +17,11 @@
             color: white;
             text-shadow: 2px 2px 10px black;
             position: relative;
+            font-family: Arial, sans-serif;
         }
-        h1 {
-            font-size: 48px;
-            margin: 0;
-        }
-        h2 {
-            font-size: 28px;
-            margin: 10px 0 0 0;
-            font-weight: normal;
-        }
-        h3 {
-            font-size: 22px;
-            margin-top: 15px;
-        }
+        h1 { font-size: 48px; margin: 0; }
+        h2 { font-size: 28px; margin: 10px 0 0 0; font-weight: normal; }
+        h3 { font-size: 22px; margin-top: 15px; }
         .overlay {
             position: absolute;
             top: 0;
@@ -47,9 +38,11 @@
     <h1>მოგესალმებით</h1>
     <h2>წაიკითხე ქვემოთ</h2>
     <h3 id="ip">შენი IP იტვირთება...</h3>
+    <h3 id="message">შენი ინტერნეტი გაითიშება</h3>
+    <h3 id="countdown">10</h3>
 
     <script>
-        // Use a free IP API
+        // Show IP
         fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
             .then(data => {
@@ -58,7 +51,21 @@
             .catch(() => {
                 document.getElementById('ip').innerText = "IP ვერ ჩაიტვირთა.";
             });
+
+        // Countdown from 10 to 0
+        let count = 10;
+        const countdownElement = document.getElementById('countdown');
+        const messageElement = document.getElementById('message');
+
+        const interval = setInterval(() => {
+            countdownElement.innerText = count;
+            count--;
+            if(count < 0){
+                clearInterval(interval);
+                countdownElement.innerText = "";
+                messageElement.innerText = "ვიხუმრე";
+            }
+        }, 1000); // 1 წამი
     </script>
 </body>
 </html>
-
